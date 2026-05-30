@@ -1,0 +1,41 @@
+@media (max-width: 900px) {
+  .heroSection {
+    height: auto;
+    padding: 44px 20px 54px;
+  }
+
+  .heroContent {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .heroTextArea {
+    text-align: center;
+  }
+
+  .heroMeta {
+    justify-content: center;
+  }
+
+  .heroSection h1 {
+    font-size: 36px;
+  }
+
+  .heroText {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 17px;
+  }
+
+  .heroActions {
+    justify-content: center;
+  }
+
+  .heroLogoCard {
+    padding: 28px;
+  }
+
+  .heroMainLogo {
+    width: 210px;
+  }
+}

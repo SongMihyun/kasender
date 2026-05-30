@@ -1,0 +1,65 @@
+.downloadInfo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px;
+  background: #f8f8f8;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.downloadInfo span {
+  font-weight: 900;
+  font-size: 22px;
+}
+
+.downloadInfo small {
+  color: #666;
+}
+
+.platformGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.platformButton {
+  padding: 24px 16px;
+  border-radius: 18px;
+  border: 1px solid #e5e5e5;
+  background: #fafafa;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.platformButton.active {
+  background: #fff7bf;
+  border-color: #f3de2c;
+}
+
+.platformButton:hover {
+  transform: translateY(-2px);
+}
+
+.platformButton:disabled {
+  cursor: wait;
+  opacity: 0.75;
+  transform: none;
+}
+
+.platformIcon {
+  font-size: 30px;
+}
+
+.platformButton span {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.platformButton small {
+  color: #666;
+}

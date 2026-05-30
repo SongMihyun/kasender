@@ -1,0 +1,10 @@
+.manualList {
+  display: grid;
+  gap: 14px;
+  padding-left: 22px;
+}
+
+.manualList li {
+  line-height: 1.7;
+  font-size: 17px;
+}

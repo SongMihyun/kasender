@@ -1,0 +1,21 @@
+.faqList {
+  display: grid;
+  gap: 18px;
+}
+
+.faqItem {
+  padding: 22px;
+  border-radius: 16px;
+  background: #f8f8f8;
+}
+
+.faqItem strong {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.faqItem p {
+  color: #666;
+  line-height: 1.7;
+}

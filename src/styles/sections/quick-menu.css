@@ -1,0 +1,26 @@
+.quickMenuGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.quickMenuCard {
+  padding: 16px;
+  transition: 0.2s;
+}
+
+.quickMenuCard:hover {
+  transform: translateY(-3px);
+  background: #fff7bf;
+  border-color: #f3de2c;
+}
+
+.quickMenuCard h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.quickMenuCard p {
+  font-size: 14px;
+  line-height: 1.5;
+}
