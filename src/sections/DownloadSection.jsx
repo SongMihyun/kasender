@@ -3,7 +3,7 @@ import SectionTitle from "../components/ui/SectionTitle.jsx";
 import PlatformButton from "../components/common/PlatformButton.jsx";
 import { platforms } from "../data/platforms.js";
 import { useEffect, useState } from "react";
-import { fetchLatestRelease } from "../utils/latestRelease.js";
+import { fetchLatestRelease, formatVersionLabel } from "../utils/latestRelease.js";
 
 function formatReleaseDate(value) {
   if (!value) {
@@ -54,7 +54,7 @@ function DownloadSection() {
 
       <div className="downloadInfo">
         <strong>현재 최신 버전</strong>
-        <span>{latestRelease?.version || "확인중"}</span>
+        <span>{latestRelease ? formatVersionLabel(latestRelease.version) : "확인중"}</span>
         <small>
           {releaseError ||
             (releaseDate ? `배포일: ${releaseDate}` : latestRelease?.fileName || "릴리즈 확인중")}

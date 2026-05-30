@@ -1,7 +1,28 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { fetchLatestRelease, formatVersionLabel } from "../utils/latestRelease.js";
 
 function Header() {
   const logoSrc = `${import.meta.env.BASE_URL}KaSender.png`;
+  const [versionLabel, setVersionLabel] = useState("최신 버전");
+
+  useEffect(() => {
+    let ignore = false;
+
+    fetchLatestRelease()
+      .then((release) => {
+        if (!ignore) {
+          setVersionLabel(formatVersionLabel(release.version));
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   return (
     <header className="header">
@@ -18,7 +39,7 @@ function Header() {
           <Link to="/contact">문의하기</Link>
         </nav>
 
-        <span className="versionBadge">v1.0.6 베타</span>
+        <span className="versionBadge">{versionLabel}</span>
       </div>
     </header>
   );

@@ -5,6 +5,7 @@ const LATEST_JSON_URL = `${RELEASE_BASE_URL}latest.json`;
 const LATEST_RELEASE_API_URL = `https://api.github.com/repos/${OWNER}/${REPO}/releases/latest`;
 
 const EXE_PATTERN = /\.exe(?:$|[?#])/i;
+let latestReleasePromise = null;
 
 function isExeUrl(value) {
   return typeof value === "string" && EXE_PATTERN.test(value);
@@ -133,7 +134,7 @@ function parseReleaseApi(release) {
   };
 }
 
-export async function fetchLatestRelease() {
+async function loadLatestRelease() {
   const release = await fetchJson(LATEST_RELEASE_API_URL);
 
   try {
@@ -151,6 +152,20 @@ export async function fetchLatestRelease() {
     console.warn("latest.json을 읽지 못해 GitHub 릴리즈 API로 대체합니다.", latestJsonError);
     return parseReleaseApi(release);
   }
+}
+
+export function formatVersionLabel(version, suffix = "베타") {
+  if (!version) {
+    return "최신 버전";
+  }
+
+  const normalizedVersion = version.startsWith("v") ? version : `v${version}`;
+  return suffix ? `${normalizedVersion} ${suffix}` : normalizedVersion;
+}
+
+export async function fetchLatestRelease() {
+  latestReleasePromise ??= loadLatestRelease();
+  return latestReleasePromise;
 }
 
 export async function downloadLatestWindowsVersion() {

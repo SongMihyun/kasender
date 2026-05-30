@@ -1,8 +1,32 @@
 import Button from "../components/ui/Button.jsx";
-import { downloadLatestWindowsVersion } from "../utils/latestRelease.js";
+import { useEffect, useState } from "react";
+import {
+  downloadLatestWindowsVersion,
+  fetchLatestRelease,
+  formatVersionLabel,
+} from "../utils/latestRelease.js";
 
 function HeroSection() {
   const logoSrc = `${import.meta.env.BASE_URL}logo.png`;
+  const [versionLabel, setVersionLabel] = useState("최신 버전");
+
+  useEffect(() => {
+    let ignore = false;
+
+    fetchLatestRelease()
+      .then((release) => {
+        if (!ignore) {
+          setVersionLabel(formatVersionLabel(release.version, "Beta"));
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   const handleDownload = async () => {
     try {
@@ -18,7 +42,7 @@ function HeroSection() {
       <div className="heroContent">
         <div className="heroTextArea">
           <div className="heroMeta heroMetaTop">
-            <span>v1.0.6 Beta</span>
+            <span>{versionLabel}</span>
             <span>Windows 우선 지원</span>
           </div>
 
