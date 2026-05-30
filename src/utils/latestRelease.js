@@ -135,6 +135,12 @@ function parseReleaseApi(release) {
 }
 
 async function loadLatestRelease() {
+  try {
+    return parseLatestJson(await fetchJson(LATEST_JSON_URL));
+  } catch (latestJsonDirectError) {
+    console.warn("latest.json 직접 요청을 읽지 못했습니다.", latestJsonDirectError);
+  }
+
   const release = await fetchJson(LATEST_RELEASE_API_URL);
 
   try {
