@@ -51,14 +51,14 @@ function HeroSection() {
           </p>
 
           <h1>
-            카카오톡 캠페인 발송
+            반복적인 업무 커뮤니케이션을
             <br />
-            더 쉽고 안정적으로
+            더 쉽고 효율적으로
           </h1>
 
           <p className="heroText">
-            이미지 발송, 대상자 관리, 발송 로그 확인을 지원하는
-            로컬 설치형 카카오 캠페인 솔루션입니다.
+            대상자 관리, 콘텐츠 구성, 운영 이력 관리를 지원하는
+            로컬 설치형 생산성 도구입니다.
           </p>
 
           <div className="heroActions">
@@ -78,16 +78,16 @@ function HeroSection() {
 
             <div className="heroFeatureList">
               <div>
-                <strong>이미지 발송</strong>
-                <span>캠페인 이미지 등록</span>
+                <strong>콘텐츠 관리</strong>
+                <span>이미지 및 문구 구성</span>
               </div>
               <div>
                 <strong>대상자 관리</strong>
-                <span>연락처·그룹 관리</span>
+                <span>연락처 및 그룹 관리</span>
               </div>
               <div>
-                <strong>발송 로그</strong>
-                <span>결과 확인 및 재시도</span>
+                <strong>운영 이력</strong>
+                <span>활동 내역 확인</span>
               </div>
             </div>
           </div>
