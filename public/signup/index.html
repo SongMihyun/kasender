@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>카센더 베타 초대권 가입</title>
+    <meta
+      name="description"
+      content="카센더 베타 초대권을 확인하고 카카오 인증으로 가입을 진행합니다."
+    />
+    <style>
+      :root {
+        color: #111827;
+        background: #f6f7fb;
+        font-family:
+          "Pretendard",
+          "Apple SD Gothic Neo",
+          "Malgun Gothic",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at top, rgba(255, 214, 0, 0.16), transparent 34rem),
+          #f6f7fb;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      .page {
+        width: min(100%, 480px);
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: 22px 18px 28px;
+      }
+
+      .shell {
+        min-height: calc(100vh - 44px);
+        padding: 24px 18px;
+        border: 1px solid #e4e7ee;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+      }
+
+      .brand {
+        display: grid;
+        justify-items: center;
+        gap: 12px;
+        margin-bottom: 22px;
+        text-align: center;
+      }
+
+      .brand img {
+        width: min(68vw, 260px);
+        height: auto;
+        display: block;
+      }
+
+      h1 {
+        margin: 4px 0 0;
+        font-size: 26px;
+        line-height: 1.25;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        margin: 0;
+        color: #536177;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .card {
+        margin-top: 14px;
+        padding: 18px;
+        border: 1px solid #e2e6ee;
+        border-radius: 18px;
+        background: #fff;
+      }
+
+      .cardTitle {
+        margin: 0 0 12px;
+        font-size: 17px;
+        font-weight: 800;
+      }
+
+      .field {
+        display: grid;
+        gap: 7px;
+        margin-top: 13px;
+      }
+
+      label {
+        color: #344054;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        border: 1px solid #ccd3df;
+        border-radius: 12px;
+        background: #fff;
+        color: #111827;
+        outline: none;
+      }
+
+      input,
+      select {
+        min-height: 48px;
+        padding: 0 14px;
+      }
+
+      textarea {
+        min-height: 86px;
+        padding: 13px 14px;
+        resize: vertical;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: #f4c400;
+        box-shadow: 0 0 0 4px rgba(244, 196, 0, 0.2);
+      }
+
+      .buttonRow {
+        display: flex;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .button {
+        min-height: 50px;
+        border: 0;
+        border-radius: 13px;
+        padding: 0 16px;
+        cursor: pointer;
+        font-weight: 800;
+      }
+
+      .button:disabled {
+        cursor: not-allowed;
+        opacity: 0.55;
+      }
+
+      .primary {
+        flex: 1;
+        background: #111827;
+        color: #fff;
+      }
+
+      .secondary {
+        background: #f3f5f9;
+        color: #334155;
+      }
+
+      .kakao {
+        width: 100%;
+        margin-top: 18px;
+        background: #fee500;
+        color: #191600;
+        border: 1px solid #e4c900;
+      }
+
+      .status {
+        display: none;
+        margin-top: 14px;
+        padding: 13px 14px;
+        border-radius: 14px;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .status.show {
+        display: block;
+      }
+
+      .ok {
+        border: 1px solid #b7dfc6;
+        background: #eefaf2;
+        color: #17613a;
+      }
+
+      .warn {
+        border: 1px solid #ffd9a6;
+        background: #fff7e8;
+        color: #8a4b00;
+      }
+
+      .error {
+        border: 1px solid #ffc3c3;
+        background: #fff1f1;
+        color: #a4262c;
+      }
+
+      .profile {
+        display: none;
+      }
+
+      .profile.show {
+        display: block;
+      }
+
+      .note {
+        margin: 12px 0 0;
+        color: #667085;
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .footer {
+        margin-top: 20px;
+        padding-top: 18px;
+        border-top: 1px solid #edf0f5;
+        color: #667085;
+        font-size: 12px;
+        line-height: 1.55;
+        text-align: center;
+      }
+
+      @media (max-width: 380px) {
+        .page {
+          padding: 12px 10px 18px;
+        }
+
+        .shell {
+          border-radius: 22px;
+          padding: 20px 14px;
+        }
+
+        h1 {
+          font-size: 23px;
+        }
+
+        .buttonRow {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <section class="shell">
+        <header class="brand">
+          <img src="/logo.png" alt="카센더" />
+          <h1>카센더 베타 초대권</h1>
+          <p class="lead">초대 코드를 확인하고 가입을 진행해 주세요.</p>
+        </header>
+
+        <section class="card" aria-labelledby="inviteTitle">
+          <h2 id="inviteTitle" class="cardTitle">초대 코드 확인</h2>
+          <div class="field">
+            <label for="inviteCode">초대 코드</label>
+            <input
+              id="inviteCode"
+              autocomplete="off"
+              autocapitalize="characters"
+              spellcheck="false"
+              placeholder="KS-BETA-XXXX-XXXX"
+            />
+          </div>
+          <div class="buttonRow">
+            <button id="validateButton" class="button primary" type="button">
+              초대 코드 확인
+            </button>
+            <button id="clearButton" class="button secondary" type="button">
+              지우기
+            </button>
+          </div>
+          <div id="inviteStatus" class="status" role="status" aria-live="polite"></div>
+        </section>
+
+        <section id="profileSection" class="card profile" aria-labelledby="profileTitle">
+          <h2 id="profileTitle" class="cardTitle">가입 정보</h2>
+          <div class="field">
+            <label for="realName">이름</label>
+            <input id="realName" autocomplete="name" placeholder="홍길동" />
+          </div>
+          <div class="field">
+            <label for="phone">휴대폰 번호</label>
+            <input id="phone" autocomplete="tel" inputmode="tel" placeholder="01012345678" />
+          </div>
+          <div class="field">
+            <label for="company">소속/회사</label>
+            <input id="company" autocomplete="organization" placeholder="소속 또는 회사명" />
+          </div>
+          <div class="field">
+            <label for="jobRole">직무/역할</label>
+            <input id="jobRole" placeholder="설계 매니저, 설계사 등" />
+          </div>
+          <div class="field">
+            <label for="usagePurpose">사용 목적</label>
+            <select id="usagePurpose">
+              <option value="">선택해 주세요</option>
+              <option value="보험/영업 고객관리">보험/영업 고객관리</option>
+              <option value="안내문 발송">안내문 발송</option>
+              <option value="교육/공지 전달">교육/공지 전달</option>
+              <option value="소규모 업체 관리">소규모 업체 관리</option>
+              <option value="기타">기타</option>
+            </select>
+          </div>
+          <button id="signupButton" class="button kakao" type="button">
+            카카오로 가입하기
+          </button>
+          <p class="note">
+            가입 후 PC 카센더 앱에서도 방금 인증한 카카오 계정과 같은 계정으로
+            로그인해 주세요.
+          </p>
+          <div id="signupStatus" class="status" role="status" aria-live="polite"></div>
+        </section>
+
+        <footer class="footer">
+          카센더는 카카오톡 공식 서비스가 아닙니다.<br />
+          가입 정보는 베타 사용자 인증 및 서비스 접근 제어 목적으로만 사용됩니다.
+        </footer>
+      </section>
+    </main>
+
+    <script>
+      const API_BASE = "https://auth.kasender.com";
+
+      const inviteInput = document.getElementById("inviteCode");
+      const validateButton = document.getElementById("validateButton");
+      const clearButton = document.getElementById("clearButton");
+      const inviteStatus = document.getElementById("inviteStatus");
+      const profileSection = document.getElementById("profileSection");
+      const signupButton = document.getElementById("signupButton");
+      const signupStatus = document.getElementById("signupStatus");
+
+      const fields = {
+        realName: document.getElementById("realName"),
+        phone: document.getElementById("phone"),
+        company: document.getElementById("company"),
+        jobRole: document.getElementById("jobRole"),
+        usagePurpose: document.getElementById("usagePurpose"),
+      };
+
+      function normalizeInvite(value) {
+        return String(value || "").trim().toUpperCase().replace(/\s+/g, "");
+      }
+
+      function setStatus(element, type, message) {
+        element.className = `status show ${type}`;
+        element.innerHTML = message;
+      }
+
+      function clearStatus(element) {
+        element.className = "status";
+        element.textContent = "";
+      }
+
+      function grantText(data) {
+        const grantMonths = data?.grant_months ?? data?.grant?.grant_months;
+        const grantMemo = data?.grant_memo ?? data?.grant?.grant_memo;
+        if (grantMemo) return grantMemo;
+        if (grantMonths) return `가입 완료일부터 ${grantMonths}개월 동안 사용할 수 있습니다.`;
+        return "카카오 계정으로 가입을 진행해 주세요.";
+      }
+
+      function errorText(code) {
+        const normalized = String(code || "").toUpperCase();
+        if (normalized.includes("USED")) {
+          return "이미 사용된 초대권입니다.<br />다른 초대권을 사용해 주세요.";
+        }
+        if (normalized.includes("EXPIRED")) {
+          return "만료된 초대권입니다.";
+        }
+        if (normalized.includes("NOT_FOUND") || normalized.includes("INVALID")) {
+          return "초대 코드를 확인할 수 없습니다.<br />코드를 다시 확인해 주세요.";
+        }
+        return "일시적으로 초대권 확인에 실패했습니다.<br />잠시 후 다시 시도해 주세요.";
+      }
+
+      async function validateInvite() {
+        const inviteCode = normalizeInvite(inviteInput.value);
+        inviteInput.value = inviteCode;
+        profileSection.classList.remove("show");
+        clearStatus(signupStatus);
+
+        if (!inviteCode) {
+          setStatus(inviteStatus, "warn", "초대 코드를 입력해 주세요.");
+          return false;
+        }
+
+        validateButton.disabled = true;
+        validateButton.textContent = "확인 중...";
+        setStatus(inviteStatus, "warn", "초대권을 확인하고 있습니다.");
+
+        try {
+          const response = await fetch(`${API_BASE}/api/mobile-signup/validate-invite`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ invite_code: inviteCode }),
+          });
+          const data = await response.json().catch(() => ({}));
+
+          const payload = data?.data || data;
+          if (!response.ok || data.ok === false || payload.ok === false || payload.available === false) {
+            const code = data?.error?.code || data?.error || data?.status;
+            setStatus(inviteStatus, "error", errorText(code));
+            return false;
+          }
+
+          setStatus(
+            inviteStatus,
+            "ok",
+            `사용 가능한 초대권입니다.<br />${grantText(payload)}`
+          );
+          profileSection.classList.add("show");
+          return true;
+        } catch {
+          setStatus(inviteStatus, "error", errorText("NETWORK_ERROR"));
+          return false;
+        } finally {
+          validateButton.disabled = false;
+          validateButton.textContent = "초대 코드 확인";
+        }
+      }
+
+      function collectProfile() {
+        return {
+          real_name: fields.realName.value.trim(),
+          phone: fields.phone.value.trim(),
+          company: fields.company.value.trim(),
+          job_role: fields.jobRole.value.trim(),
+          usage_purpose: fields.usagePurpose.value.trim(),
+        };
+      }
+
+      function validateProfile(profile) {
+        if (!profile.real_name) return "이름을 입력해 주세요.";
+        if (!profile.phone) return "휴대폰 번호를 입력해 주세요.";
+        if (!profile.company) return "소속/회사를 입력해 주세요.";
+        if (!profile.job_role) return "직무/역할을 입력해 주세요.";
+        if (!profile.usage_purpose) return "사용 목적을 선택해 주세요.";
+        return "";
+      }
+
+      function findRedirectUrl(data) {
+        return (
+          data?.kakao_auth_url ||
+          data?.auth_url ||
+          data?.oauth_url ||
+          data?.redirect_url ||
+          data?.url ||
+          data?.data?.kakao_auth_url ||
+          data?.data?.auth_url ||
+          data?.data?.oauth_url ||
+          data?.data?.redirect_url ||
+          data?.data?.url ||
+          ""
+        );
+      }
+
+      async function startSignup() {
+        const inviteCode = normalizeInvite(inviteInput.value);
+        const profile = collectProfile();
+        const profileError = validateProfile(profile);
+        if (profileError) {
+          setStatus(signupStatus, "warn", profileError);
+          return;
+        }
+
+        signupButton.disabled = true;
+        signupButton.textContent = "가입 시작 중...";
+        setStatus(signupStatus, "warn", "카카오 인증 화면으로 이동할 준비를 하고 있습니다.");
+
+        try {
+          const response = await fetch(`${API_BASE}/api/mobile-signup/start`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ invite_code: inviteCode, profile }),
+          });
+          const data = await response.json().catch(() => ({}));
+          const redirectUrl = findRedirectUrl(data);
+
+          if (!response.ok || data.ok === false || !redirectUrl) {
+            setStatus(
+              signupStatus,
+              "error",
+              "가입을 시작하지 못했습니다.<br />잠시 후 다시 시도해 주세요."
+            );
+            return;
+          }
+
+          window.location.href = redirectUrl;
+        } catch {
+          setStatus(
+            signupStatus,
+            "error",
+            "가입을 시작하지 못했습니다.<br />네트워크 상태를 확인한 뒤 다시 시도해 주세요."
+          );
+        } finally {
+          signupButton.disabled = false;
+          signupButton.textContent = "카카오로 가입하기";
+        }
+      }
+
+      validateButton.addEventListener("click", validateInvite);
+      signupButton.addEventListener("click", startSignup);
+      clearButton.addEventListener("click", () => {
+        inviteInput.value = "";
+        clearStatus(inviteStatus);
+        clearStatus(signupStatus);
+        profileSection.classList.remove("show");
+        inviteInput.focus();
+      });
+      inviteInput.addEventListener("input", () => {
+        inviteInput.value = normalizeInvite(inviteInput.value);
+      });
+
+      const initialInvite = normalizeInvite(new URLSearchParams(window.location.search).get("invite"));
+      if (initialInvite) {
+        inviteInput.value = initialInvite;
+        validateInvite();
+      }
+    </script>
+  </body>
+</html>
